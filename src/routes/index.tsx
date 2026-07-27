@@ -1,50 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  Award,
+  ChefHat,
+  Clock,
+  Flame,
+  Camera,
+  HeartHandshake,
+  Sparkles,
+  Swords,
+  Trophy,
+  Users,
+  Utensils,
+} from "lucide-react";
+
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { Quiz } from "@/components/site/Quiz";
+import { Testimonials } from "@/components/site/Testimonials";
+import { Reveal } from "@/components/site/Reveal";
+import { LeadForm } from "@/components/site/LeadForm";
+import { StickyCta } from "@/components/site/StickyCta";
+import { Toaster } from "@/components/ui/sonner";
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Toaster } from "@/components/ui/sonner";
-import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
-import { Quiz } from "@/components/site/Quiz";
-import { Testimonials } from "@/components/site/Testimonials";
-import {
-  ArrowUpRight,
-  Building2,
-  Cake,
-  Check,
-  Crown,
-  Flame,
-  Gift,
-  Handshake,
-  MountainSnow,
-  PartyPopper,
-  Snowflake,
-  Sparkles,
-  Users,
-} from "lucide-react";
 
-import hero from "@/assets/hero.jpg";
-import cta from "@/assets/cta.jpg";
-import fCulinary from "@/assets/f-culinary.jpg";
-import fQuest from "@/assets/f-quest.jpg";
-import fIntellect from "@/assets/f-intellect.jpg";
-import fOlympic from "@/assets/f-olympic.jpg";
-import fCocktail from "@/assets/f-cocktail.jpg";
-import fMusic from "@/assets/f-music.jpg";
-import fOutdoor from "@/assets/f-outdoor.jpg";
-import fTheme from "@/assets/f-theme.jpg";
-import cIt from "@/assets/c-it.jpg";
-import cNature from "@/assets/c-nature.jpg";
-import cAnniversary from "@/assets/c-anniversary.jpg";
-import cGatsby from "@/assets/c-gatsby.jpg";
-import cNewyear from "@/assets/c-newyear.jpg";
+import hero from "@/assets/hk-hero.jpg";
+import emotion from "@/assets/hk-emotion.jpg";
+import chef from "@/assets/hk-chef.jpg";
+import battle from "@/assets/hk-battle.jpg";
+import win from "@/assets/hk-win.jpg";
+import g1 from "@/assets/hk-g1.jpg";
+import g2 from "@/assets/hk-g2.jpg";
+import g3 from "@/assets/hk-g3.jpg";
+import g4 from "@/assets/hk-g4.jpg";
+import g5 from "@/assets/hk-g5.jpg";
+import cta from "@/assets/hk-cta.jpg";
 
-const TITLE = "Организация корпоративов и тимбилдингов под ключ — EVENTUM";
+const TITLE = "Кулинарное квест-шоу «Адская кухня» для корпоративов | FIRE KITCHEN SHOW";
 const DESCRIPTION =
-  "Event-агентство полного цикла: корпоративы, тимбилдинги, юбилеи компаний и дни рождения для взрослых. 300+ мероприятий, от 10 до 500 участников, индивидуальный сценарий.";
+  "Кулинарное квест-шоу в стиле Адской кухни для взрослых: корпоративы, тимбилдинги, дни рождения, мальчишники. От 8 до 80 участников, ведущий-шоумен, настоящие испытания.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,451 +52,492 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "EVENTUM",
+          name: "FIRE KITCHEN SHOW",
           description: DESCRIPTION,
           telephone: "+7 (495) 123-45-67",
-          email: "hello@eventum.ru",
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "128" },
+          email: "hello@firekitchenshow.ru",
+          priceRange: "$$$",
+          address: { "@type": "PostalAddress", addressCountry: "RU", addressLocality: "Москва" },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5.0",
+            reviewCount: "312",
+          },
         }),
       },
     ],
   }),
-  component: Index,
+  component: Landing,
 });
 
-const audiences = [
-  { icon: PartyPopper, title: "Корпоративы", text: "Вечера, о которых говорят весь год." },
-  { icon: Handshake, title: "Тимбилдинги", text: "Командный дух без «принудительного веселья»." },
-  { icon: Cake, title: "Дни рождения компании", text: "Праздник бренда и его людей." },
-  { icon: Crown, title: "Юбилеи бизнеса", text: "Статусный формат для партнеров и топ-состава." },
-  { icon: Gift, title: "Дни рождения взрослых", text: "Личные праздники 25–55 лет." },
-  { icon: MountainSnow, title: "Выездные мероприятия", text: "Загород, база отдыха, другой город." },
-  { icon: Snowflake, title: "Новогодние корпоративы", text: "Главная ночь сезона под ключ." },
-  { icon: Sparkles, title: "VIP-мероприятия", text: "Закрытые события премиального уровня." },
-];
-
-const advantages = [
-  {
-    icon: Sparkles,
-    title: "Уникальные сценарии",
-    text: "Каждое мероприятие создается индивидуально — под цели, культуру и состав команды.",
-  },
-  {
-    icon: Check,
-    title: "Под ключ",
-    text: "Берем на себя всю организацию: площадка, техника, кейтеринг, артисты, логистика.",
-  },
-  {
-    icon: Users,
-    title: "Опытная команда",
-    text: "Профессиональные ведущие, event-менеджеры и продюсеры с опытом от 5 лет.",
-  },
-  {
-    icon: Flame,
-    title: "Гарантия эмоций",
-    text: "Плотная программа и точный тайминг: гости не будут скучать ни минуты.",
-  },
-];
-
-const formats = [
-  { img: fCulinary, title: "Кулинарный баттл", text: "Команды готовят под руководством шефа." },
-  { img: fQuest, title: "Адреналин-квест", text: "Динамика, загадки и работа на скорость." },
-  { img: fIntellect, title: "Интеллектуальное шоу", text: "Формат ТВ-игры с ведущим и табло." },
-  { img: fOlympic, title: "Олимпийские игры", text: "Активные состязания на воздухе." },
-  { img: fCocktail, title: "Коктейльный баттл", text: "Миксология и авторские коктейли команд." },
-  { img: fMusic, title: "Музыкальный квиз", text: "Живая группа, треки и азарт зала." },
-  { img: fOutdoor, title: "Выездной тимбилдинг", text: "Загородная программа на 1–2 дня." },
-  { img: fTheme, title: "Тематическая вечеринка", text: "Полное погружение: декор, дресс-код, шоу." },
+const heroBenefits = [
+  "От 8 до 80 участников",
+  "Ведущий-шоумен",
+  "Настоящие кулинарные испытания",
+  "Командные соревнования",
+  "Подходит даже тем, кто не умеет готовить",
 ];
 
 const steps = [
-  { n: "01", title: "Оставляете заявку", text: "Короткий бриф или звонок — 5 минут вашего времени." },
-  { n: "02", title: "Мы предлагаем концепции", text: "2–3 идеи с визуализацией и таймингом." },
-  { n: "03", title: "Согласовываем программу и бюджет", text: "Прозрачная смета без скрытых доплат." },
-  { n: "04", title: "Проводим мероприятие", text: "Продюсер и команда работают на площадке." },
-  {
-    n: "05",
-    title: "Вы получаете восторг гостей и сильную команду",
-    text: "Фото- и видеоотчет, обратная связь участников.",
-  },
+  { icon: Users, title: "Деление на команды", text: "Жеребьевка, названия, бригады и капитаны." },
+  { icon: ChefHat, title: "Знакомство с шефом", text: "Ведущий задает правила и накаляет градус." },
+  { icon: Utensils, title: "Серия испытаний", text: "Слепая дегустация, скорость, точность, вкус." },
+  { icon: Swords, title: "Командные баттлы", text: "Команда против команды, счет на табло." },
+  { icon: Flame, title: "Финальная битва", text: "Главное блюдо шоу и защита перед жюри." },
+  { icon: Trophy, title: "Награждение", text: "Медали, титул шефа и общий стол с ужином." },
 ];
 
-const cases = [
-  {
-    img: cIt,
-    title: "Корпоратив IT-компании",
-    people: "50 участников",
-    text: "Лофт, интерактивное шоу и награждение команд — вечер в духе продуктового релиза.",
-    wide: true,
-  },
-  {
-    img: cNature,
-    title: "Тимбилдинг на природе",
-    people: "120 участников",
-    text: "Выездная программа с состязаниями и вечерним костром на закате.",
-  },
-  {
-    img: cAnniversary,
-    title: "Юбилей компании",
-    people: "200 участников",
-    text: "Гала-ужин, световое шоу и церемония награждения сотрудников.",
-  },
-  {
-    img: cGatsby,
-    title: "День рождения в стиле Гэтсби",
-    people: "40 участников",
-    text: "Ар-деко, джаз-бэнд, дресс-код и авторский бар до утра.",
-  },
-  {
-    img: cNewyear,
-    title: "Новогодний корпоратив",
-    people: "150 участников",
-    text: "Главная ночь года: конфетти, диджей-сет и фейерверк-финал.",
-    wide: true,
-  },
+const formats = [
+  { title: "Корпоратив", text: "Шоу-программа вместо скучного банкета.", img: g4 },
+  { title: "Тимбилдинг", text: "Реальная командная работа под давлением.", img: battle },
+  { title: "День рождения", text: "Взрослый праздник с азартом и юмором.", img: g2 },
+  { title: "Юбилей компании", text: "Масштабный формат до 80 участников.", img: win },
+  { title: "Мальчишник", text: "Огонь, мясо, соревнование и хороший финал.", img: g5 },
+  { title: "Девичник", text: "Коктейли, десерты и много смеха.", img: g3 },
+  { title: "Выпускной для взрослых групп", text: "Встреча курса или потока в новом формате.", img: emotion },
+];
+
+const advantages = [
+  { icon: Sparkles, title: "Уникальный формат", text: "Не мастер-класс и не квиз — полноценное шоу с драматургией." },
+  { icon: ChefHat, title: "Не требует навыков", text: "Шеф и су-шефы ведут за руку: получится у каждого." },
+  { icon: HeartHandshake, title: "Сильное командообразование", text: "Общая цель, роли, дедлайн — команда раскрывается за час." },
+  { icon: Users, title: "Для любого возраста", text: "Работает и для 25, и для 55 — проверено сотнями игр." },
+  { icon: Clock, title: "Готовые сценарии", text: "Запуск от 3 дней: площадка, продукты, техника — на нас." },
+  { icon: Camera, title: "Фото и видео после", text: "Профессиональный репортаж и динамичный ролик для соцсетей." },
+];
+
+const gallery = [
+  { src: battle, alt: "Кулинарный баттл двух команд", cls: "md:col-span-2 md:row-span-2" },
+  { src: g2, alt: "Эмоции участницы кулинарного шоу", cls: "" },
+  { src: g5, alt: "Огонь на сковороде во время испытания", cls: "" },
+  { src: win, alt: "Награждение победителей кулинарного шоу", cls: "md:col-span-2" },
+  { src: g1, alt: "Скоростная нарезка на испытании", cls: "" },
+  { src: g3, alt: "Финальное блюдо участников", cls: "" },
 ];
 
 const stats = [
-  { v: "300+", l: "мероприятий" },
-  { v: "15 000+", l: "участников" },
-  { v: "95%", l: "клиентов приходят повторно" },
-  { v: "5 лет", l: "на рынке" },
+  { value: "500+", label: "проведенных игр" },
+  { value: "20 000+", label: "участников" },
+  { value: "98%", label: "довольных гостей" },
+  { value: "5.0", label: "средняя оценка" },
 ];
 
 const faq = [
   {
-    q: "Сколько стоит мероприятие?",
-    a: "Стоимость зависит от формата, количества гостей и площадки. Камерные форматы стартуют от 150 000 ₽, масштабные корпоративы рассчитываются индивидуально. После квиза вы получите точную вилку бюджета.",
+    q: "Сколько длится игра?",
+    a: "Стандартный формат — 2,5–3 часа: знакомство с шефом, 4–5 испытаний, финальная битва и награждение. Дальше по желанию остается общий ужин из приготовленных блюд.",
   },
   {
-    q: "За сколько дней нужно бронировать?",
-    a: "Оптимально — за 3–6 недель. Новогодний сезон бронируют с сентября. Срочные проекты берем от 7 дней при наличии свободной команды.",
+    q: "Нужен ли опыт готовки?",
+    a: "Нет. Все испытания рассчитаны на новичков: шеф показывает технику, су-шефы страхуют команды. Половина наших гостей до игры не готовила ничего сложнее яичницы.",
   },
   {
-    q: "Работаете ли вы в других городах?",
-    a: "Да. Реализуем проекты по всей России и в странах СНГ: выезжает продюсерская группа, подрядчиков подбираем локально.",
+    q: "Можно ли участвовать большой компанией?",
+    a: "Да, мы проводим игры от 8 до 80 человек. Для групп больше 40 участников подключаем второго ведущего и делим зал на бригады.",
   },
   {
-    q: "Можно ли провести мероприятие на нашей площадке?",
-    a: "Конечно. Мы адаптируем программу под ваш офис, загородную базу или собственное пространство и берем на себя техническое оснащение.",
+    q: "Есть ли корпоративные пакеты?",
+    a: "Да: «Базовый» (шоу + ужин), «Бизнес» (шоу, кейтеринг, фотограф) и «Премиум» (шоу, видеоролик, декор, брендирование фартуков и наградной церемонии). Работаем по договору и с закрывающими документами.",
   },
   {
-    q: "Есть ли готовые программы?",
-    a: "Да, у нас более 20 отработанных форматов. Каждый из них мы адаптируем под вашу команду, цели и tone of voice компании.",
+    q: "Можно ли заказать фотографа?",
+    a: "Да, фотограф и видеооператор входят в пакеты «Бизнес» и «Премиум» или заказываются отдельно. Фото передаем в течение 2 дней, ролик — до 5 дней.",
   },
 ];
 
-function Index() {
+function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      <Toaster position="top-center" />
       <Header />
+      <StickyCta />
+      <Toaster position="top-center" />
 
-      {/* HERO */}
-      <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden">
-        <img
-          src={hero}
-          alt="Корпоратив: команда аплодирует под золотой конфетти"
-          width={1920}
-          height={1088}
-          className="animate-slow-zoom absolute inset-0 h-full w-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-veil)" }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-background/50" aria-hidden />
-
-        <div className="relative mx-auto w-full max-w-7xl px-5 pt-28 pb-16 lg:px-8">
-          <span className="eyebrow animate-rise">Event-агентство полного цикла</span>
-          <h1 className="animate-rise mt-5 max-w-4xl text-4xl leading-[1.05] font-extrabold sm:text-5xl lg:text-7xl">
-            Корпоративы, тимбилдинги и праздники,{" "}
-            <span className="text-gradient-gold">которые запоминаются</span>
-          </h1>
-          <p className="animate-rise mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Создаем мероприятия под ключ для компаний и взрослых компаний друзей. От камерных
-            вечеринок до масштабных корпоративов.
-          </p>
-
-          <div className="animate-rise mt-9 flex flex-wrap gap-3">
-            <a
-              href="#quiz"
-              className="glow-gold rounded-full bg-gradient-gold px-8 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-            >
-              Получить программу
-            </a>
-            <a
-              href="#quiz"
-              className="rounded-full border border-gold/50 px-8 py-4 text-sm font-bold text-gold transition-colors hover:bg-gold/10"
-            >
-              Рассчитать стоимость
-            </a>
-          </div>
-
-          <ul className="animate-rise mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              "Более 300 проведенных мероприятий",
-              "От 10 до 500 участников",
-              "Организация под ключ",
-              "Индивидуальный сценарий",
-            ].map((f) => (
-              <li
-                key={f}
-                className="flex items-start gap-2 rounded-xl border border-border bg-background/40 px-4 py-3 text-sm backdrop-blur-sm"
-              >
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                {f}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ДЛЯ КОГО */}
-      <section id="for-whom" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
-        <span className="eyebrow">Для кого</span>
-        <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
-          Форматы для бизнеса и частных клиентов
-        </h2>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {audiences.map(({ icon: Icon, title, text }) => (
-            <article
-              key={title}
-              className="surface-card group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/50"
-            >
-              <Icon className="h-7 w-7 text-gold transition-transform group-hover:scale-110" />
-              <h3 className="mt-5 text-lg font-bold">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ПОЧЕМУ НАС ВЫБИРАЮТ */}
-      <section className="border-y border-border bg-graphite/40">
-        <div className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
-          <span className="eyebrow">Почему нас выбирают</span>
-          <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
-            Спокойствие заказчика и эмоции гостей
-          </h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {advantages.map(({ icon: Icon, title, text }) => (
-              <article key={title} className="surface-card rounded-2xl p-7">
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-gold text-primary-foreground">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-6 text-lg font-bold">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ФОРМАТЫ */}
-      <section id="formats" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
-        <span className="eyebrow">Популярные форматы</span>
-        <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
-          Программы, которые заводят зал
-        </h2>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {formats.map((f) => (
-            <article
-              key={f.title}
-              className="surface-card group overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/50"
-            >
-              <div className="relative aspect-4/3 overflow-hidden">
-                <img
-                  src={f.img}
-                  alt={f.title}
-                  loading="lazy"
-                  width={900}
-                  height={700}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-card to-transparent" />
-              </div>
-              <div className="p-5">
-                <h3 className="text-base font-bold">{f.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
-                <a
-                  href="#quiz"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold"
-                >
-                  Подробнее <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ПРОЦЕСС */}
-      <section id="process" className="border-y border-border bg-graphite/40">
-        <div className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
-          <span className="eyebrow">Как проходит мероприятие</span>
-          <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
-            Пять шагов от заявки до оваций
-          </h2>
-          <ol className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {steps.map((s) => (
-              <li key={s.n} className="surface-card relative rounded-2xl p-6">
-                <span className="font-display text-4xl font-black text-gradient-gold">{s.n}</span>
-                <h3 className="mt-4 text-base font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-10">
-            <a
-              href="#quiz"
-              className="inline-flex rounded-full bg-gradient-gold px-8 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-            >
-              Начать с бесплатной концепции
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* КЕЙСЫ */}
-      <section id="cases" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
-        <span className="eyebrow">Наши проекты</span>
-        <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
-          Кейсы, которыми гордимся
-        </h2>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {cases.map((c) => (
-            <article
-              key={c.title}
-              className={`group relative overflow-hidden rounded-3xl border border-border ${
-                c.wide ? "lg:col-span-2" : ""
-              }`}
-            >
-              <img
-                src={c.img}
-                alt={c.title}
-                loading="lazy"
-                width={1200}
-                height={800}
-                className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-96"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-background/60 px-3 py-1 text-xs font-bold text-gold backdrop-blur-sm">
-                  <Building2 className="h-3.5 w-3.5" /> {c.people}
-                </span>
-                <h3 className="mt-3 text-xl font-bold md:text-2xl">{c.title}</h3>
-                <p className="mt-2 max-w-md text-sm text-muted-foreground">{c.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ЦИФРЫ */}
-      <section className="border-y border-border bg-graphite/40">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-          {stats.map((s) => (
-            <div key={s.l} className="text-center md:text-left">
-              <div className="font-display text-4xl font-black text-gradient-gold md:text-6xl">
-                {s.v}
-              </div>
-              <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ОТЗЫВЫ */}
-      <section id="reviews" className="section-pad mx-auto max-w-5xl px-5 lg:px-8">
-        <span className="eyebrow">Отзывы</span>
-        <h2 className="mt-4 mb-12 text-3xl font-extrabold md:text-5xl">Что говорят клиенты</h2>
-        <Testimonials />
-      </section>
-
-      {/* КВИЗ */}
-      <section id="quiz" className="border-y border-border bg-graphite/40">
-        <div className="section-pad mx-auto grid max-w-7xl items-start gap-12 px-5 lg:grid-cols-2 lg:px-8">
-          <div className="lg:sticky lg:top-28">
-            <span className="eyebrow">Расчет стоимости</span>
-            <h2 className="mt-4 text-3xl font-extrabold md:text-5xl">
-              Узнайте бюджет вашего мероприятия за 1 минуту
-            </h2>
-            <p className="mt-5 text-muted-foreground">
-              Ответьте на 4 вопроса — пришлем 2–3 концепции и прозрачную смету. Без предоплаты и
-              обязательств.
+      <main>
+        {/* 1. HERO */}
+        <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden">
+          <img
+            src={hero}
+            alt="Команда в черных фартуках на профессиональной кухне во время кулинарного шоу"
+            width={1920}
+            height={1088}
+            className="animate-slow-zoom absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "var(--gradient-veil)" }}
+            aria-hidden
+          />
+          <div className="relative mx-auto w-full max-w-7xl px-5 pt-28 pb-20 lg:px-8">
+            <p className="animate-rise eyebrow">Кулинарное квест-шоу для взрослых</p>
+            <h1 className="animate-rise mt-5 max-w-4xl text-4xl leading-[1.05] font-extrabold md:text-6xl lg:text-7xl">
+              Почувствуйте себя участниками настоящей{" "}
+              <span className="text-gradient-fire">Адской кухни</span>
+            </h1>
+            <p className="animate-rise mt-6 max-w-2xl text-base text-muted-foreground md:text-xl">
+              Кулинарное квест-шоу для корпоративов, дней рождения и компаний друзей.
             </p>
-            <ul className="mt-8 space-y-3 text-sm">
-              {[
-                "Ответ менеджера в течение 15 минут",
-                "Концепции с визуализацией и таймингом",
-                "Фиксированная смета без скрытых доплат",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                  {t}
+
+            <div className="animate-rise mt-9 flex flex-wrap gap-3">
+              <a
+                href="#quiz"
+                className="glow-fire inline-flex items-center gap-2 rounded-full bg-gradient-fire px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+              >
+                <Flame className="h-4 w-4" /> Забронировать игру
+              </a>
+              <a
+                href="#quiz"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-7 py-4 text-sm font-bold backdrop-blur-md transition-colors hover:border-ember hover:text-ember"
+              >
+                Получить стоимость
+              </a>
+            </div>
+
+            <ul className="animate-rise mt-10 grid max-w-4xl gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              {heroBenefits.map((b) => (
+                <li key={b} className="flex items-start gap-2 text-sm text-foreground/90">
+                  <span className="mt-0.5 text-ember">✓</span>
+                  {b}
                 </li>
               ))}
             </ul>
           </div>
-          <Quiz />
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ */}
-      <section id="faq" className="section-pad mx-auto max-w-4xl px-5 lg:px-8">
-        <span className="eyebrow">FAQ</span>
-        <h2 className="mt-4 mb-10 text-3xl font-extrabold md:text-5xl">Частые вопросы</h2>
-        <Accordion type="single" collapsible className="w-full">
-          {faq.map((f, i) => (
-            <AccordionItem key={f.q} value={`i${i}`} className="border-border">
-              <AccordionTrigger className="text-left text-base font-semibold hover:text-gold md:text-lg">
-                {f.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
+        {/* 2. ЭМОЦИИ */}
+        <section id="emotions" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <Reveal>
+              <p className="eyebrow">Атмосфера</p>
+              <h2 className="mt-4 text-3xl font-extrabold md:text-5xl">
+                Здесь не смотрят шоу.
+                <br />
+                <span className="text-gradient-fire">Здесь становятся его участниками.</span>
+              </h2>
+              <p className="mt-6 max-w-xl text-muted-foreground">
+                Участники делятся на команды, проходят испытания, соревнуются за победу и получают
+                море эмоций. Черные фартуки, гул кухни, огонь на сковородах, крик шефа и табло со
+                счетом — все как в телевизионном шоу, только главные герои здесь вы.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {[
+                  { v: "3 часа", l: "чистого драйва" },
+                  { v: "5 испытаний", l: "и финальная битва" },
+                  { v: "1 команда", l: "после финала" },
+                ].map((i) => (
+                  <div key={i.v} className="surface-card rounded-2xl p-5">
+                    <p className="font-display text-xl font-bold text-ember">{i.v}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{i.l}</p>
+                  </div>
+                ))}
+              </div>
+              <LeadForm source="hero" className="mt-8 max-w-2xl" buttonLabel="Получить программу" />
+            </Reveal>
 
-      {/* ФИНАЛЬНЫЙ CTA */}
-      <section className="relative overflow-hidden">
-        <img
-          src={cta}
-          alt="Награждение команды на корпоративе"
-          loading="lazy"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-background/80" aria-hidden />
-        <div className="relative mx-auto max-w-4xl px-5 py-24 text-center md:py-32 lg:px-8">
-          <h2 className="text-3xl font-extrabold md:text-5xl">
-            Давайте создадим мероприятие,{" "}
-            <span className="text-gradient-gold">о котором будут говорить еще долго</span>
-          </h2>
-          <p className="mt-5 text-muted-foreground md:text-lg">
-            Получите несколько идей и расчет стоимости уже сегодня
-          </p>
-          <a
-            href="#quiz"
-            className="glow-gold mt-9 inline-flex rounded-full bg-gradient-gold px-10 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-          >
-            Получить предложение
-          </a>
-        </div>
-      </section>
+            <Reveal delay={120} className="grid grid-cols-2 gap-4">
+              <img
+                src={emotion}
+                alt="Гости смеются во время кулинарного квест-шоу"
+                loading="lazy"
+                width={1600}
+                height={1000}
+                className="col-span-2 h-64 w-full rounded-3xl object-cover md:h-80"
+              />
+              <img
+                src={chef}
+                alt="Ведущий-шеф на кулинарном шоу"
+                loading="lazy"
+                width={1200}
+                height={1500}
+                className="h-56 w-full rounded-3xl object-cover md:h-72"
+              />
+              <img
+                src={g5}
+                alt="Огонь на сковороде"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="h-56 w-full rounded-3xl object-cover md:h-72"
+              />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 3. КАК ПРОХОДИТ ИГРА */}
+        <section id="how" className="border-y border-border bg-graphite/40">
+          <div className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
+            <Reveal>
+              <p className="eyebrow">Сценарий вечера</p>
+              <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
+                Как проходит игра
+              </h2>
+            </Reveal>
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {steps.map((s, i) => (
+                <Reveal key={s.title} delay={i * 70}>
+                  <div className="surface-card h-full rounded-2xl p-6">
+                    <div className="flex items-center justify-between">
+                      <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-fire text-primary-foreground">
+                        <s.icon className="h-5 w-5" />
+                      </span>
+                      <span className="font-display text-3xl font-black text-secondary-foreground/15">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4. ФОРМАТЫ */}
+        <section id="formats" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <p className="eyebrow">Поводы</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
+              Форматы, под которые адаптируем шоу
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {formats.map((f, i) => (
+              <Reveal key={f.title} delay={i * 60}>
+                <article className="group relative h-72 overflow-hidden rounded-3xl border border-border">
+                  <img
+                    src={f.img}
+                    alt={f.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <h3 className="text-xl font-bold">{f.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{f.text}</p>
+                    <a
+                      href="#quiz"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-ember"
+                    >
+                      Рассчитать стоимость <Flame className="h-4 w-4" />
+                    </a>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+            <Reveal delay={420}>
+              <div className="surface-card flex h-72 flex-col justify-center rounded-3xl p-7">
+                <h3 className="text-xl font-bold">Свой повод?</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Соберем сценарий под вашу задачу и количество гостей.
+                </p>
+                <a
+                  href="#quiz"
+                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-fire px-6 py-3 text-sm font-bold text-primary-foreground"
+                >
+                  Обсудить формат
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 5. ПОЧЕМУ ВЫБИРАЮТ НАС */}
+        <section className="border-y border-border bg-graphite/40">
+          <div className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
+            <Reveal>
+              <p className="eyebrow">Почему нас выбирают</p>
+              <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
+                Шоу, которое продает себя эмоциями гостей
+              </h2>
+            </Reveal>
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {advantages.map((a, i) => (
+                <Reveal key={a.title} delay={i * 60}>
+                  <div className="surface-card h-full rounded-2xl p-6">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl border border-ember/40 text-ember">
+                      <a.icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-5 text-lg font-bold">{a.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{a.text}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={200}>
+              <div className="mt-12 surface-card rounded-3xl p-6 md:p-8">
+                <h3 className="text-lg font-bold md:text-xl">
+                  Получите программу шоу и стоимость на вашу дату
+                </h3>
+                <LeadForm source="cta" className="mt-5" buttonLabel="Получить программу" />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 6. ГАЛЕРЕЯ */}
+        <section id="gallery" className="section-pad mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <p className="eyebrow">Галерея</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-extrabold md:text-5xl">
+              Как это выглядит вживую
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid auto-rows-[190px] grid-cols-2 gap-4 md:grid-cols-4">
+            {gallery.map((g, i) => (
+              <Reveal key={g.alt} delay={i * 60} className={`${g.cls} h-full`}>
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className="h-full w-full rounded-2xl object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={120}>
+            <div className="relative mt-6 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={g4}
+                alt="Видео-отзыв команды после кулинарного шоу"
+                loading="lazy"
+                className="h-72 w-full object-cover md:h-96"
+              />
+              <div className="absolute inset-0 grid place-items-center bg-background/50">
+                <div className="text-center">
+                  <span className="animate-flicker grid h-16 w-16 place-items-center rounded-full bg-gradient-fire text-primary-foreground mx-auto">
+                    <Flame className="h-7 w-7" />
+                  </span>
+                  <p className="mt-4 font-display text-lg font-bold">Видео-отзывы участников</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Пришлем подборку роликов с игр в мессенджер
+                  </p>
+                  <a
+                    href="#quiz"
+                    className="mt-5 inline-flex rounded-full border border-ember px-6 py-3 text-sm font-bold text-ember"
+                  >
+                    Запросить видео
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 7. ЦИФРЫ */}
+        <section className="border-y border-border bg-graphite/40">
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 80}>
+                <p className="text-gradient-fire font-display text-4xl font-black md:text-5xl">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* 8. ОТЗЫВЫ */}
+        <section id="reviews" className="section-pad mx-auto max-w-5xl px-5 lg:px-8">
+          <Reveal>
+            <p className="eyebrow">Отзывы · средняя оценка 5.0</p>
+            <h2 className="mt-4 mb-12 text-3xl font-extrabold md:text-5xl">
+              Компании и частные гости
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <Testimonials />
+          </Reveal>
+        </section>
+
+        {/* 9. КВИЗ */}
+        <section id="quiz" className="border-y border-border bg-graphite/40">
+          <div className="section-pad mx-auto max-w-6xl px-5 lg:px-8">
+            <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.15fr]">
+              <Reveal>
+                <p className="eyebrow">Расчет за 1 минуту</p>
+                <h2 className="mt-4 text-3xl font-extrabold md:text-5xl">
+                  Рассчитать стоимость мероприятия
+                </h2>
+                <p className="mt-5 text-muted-foreground">
+                  Ответьте на 4 вопроса — пришлем программу шоу, свободные даты и точную стоимость
+                  под ваш формат.
+                </p>
+                <ul className="mt-8 space-y-3 text-sm">
+                  {[
+                    "Ответ менеджера в течение 15 минут",
+                    "Работаем с юрлицами и по договору",
+                    "Площадка, продукты и техника — на нас",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-2">
+                      <Award className="mt-0.5 h-4 w-4 shrink-0 text-ember" /> {t}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={120}>
+                <Quiz />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* 10. FAQ */}
+        <section id="faq" className="section-pad mx-auto max-w-4xl px-5 lg:px-8">
+          <Reveal>
+            <p className="eyebrow">FAQ</p>
+            <h2 className="mt-4 mb-10 text-3xl font-extrabold md:text-5xl">Частые вопросы</h2>
+          </Reveal>
+          <Reveal delay={80}>
+            <Accordion type="single" collapsible className="w-full">
+              {faq.map((f, i) => (
+                <AccordionItem key={f.q} value={`i${i}`} className="border-border">
+                  <AccordionTrigger className="text-left text-base font-semibold hover:text-ember md:text-lg">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground md:text-base">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </section>
+
+        {/* 11. ФИНАЛЬНЫЙ CTA */}
+        <section className="relative overflow-hidden">
+          <img
+            src={cta}
+            alt="Гости за общим столом после кулинарного шоу"
+            loading="lazy"
+            width={1600}
+            height={900}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/80" />
+          <div className="relative mx-auto max-w-4xl px-5 py-24 text-center lg:px-8">
+            <Reveal>
+              <h2 className="text-3xl font-extrabold md:text-5xl">
+                Готовы проверить, кто станет{" "}
+                <span className="text-gradient-fire">шефом вашей команды?</span>
+              </h2>
+              <p className="mt-5 text-muted-foreground md:text-lg">
+                Оставьте заявку и получите программу мероприятия уже сегодня.
+              </p>
+              <LeadForm source="cta" className="mx-auto mt-9 max-w-2xl" />
+            </Reveal>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

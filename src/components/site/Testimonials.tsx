@@ -1,90 +1,114 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-const reviews = [
+type Review = {
+  name: string;
+  role: string;
+  text: string;
+  type: "Компания" | "Частный клиент";
+};
+
+const reviews: Review[] = [
   {
     name: "Анна Ковалева",
-    company: "HR-директор, Nordwind Group",
-    text: "Организовали корпоратив на 180 человек за три недели. Сценарий попал в нашу культуру на 100%: команда до сих пор пересматривает фотографии и цитирует шутки ведущего.",
-    initials: "АК",
+    role: "HR-директор, IT-компания «Синапс»",
+    type: "Компания",
+    text: "Брали игру на 48 человек. Через 10 минут даже самые тихие разработчики кричали за свою команду. Ведущий держал зал как настоящий шеф — жестко, но с юмором. Лучший тимбилдинг за 5 лет.",
   },
   {
-    name: "Дмитрий Соколов",
-    company: "Founder, ITL Systems",
-    text: "Это первый тимбилдинг, с которого никто не ушел раньше времени. Разработчики и продажи наконец-то заговорили друг с другом — эффект держится уже полгода.",
-    initials: "ДС",
+    name: "Максим Орлов",
+    role: "Коммерческий директор, «Ретайл Групп»",
+    type: "Компания",
+    text: "Хотели корпоратив без унылых конкурсов. Получили полноценное шоу: испытания, баттлы, финал с награждением. Фото и видео прислали через два дня — уже разошлись по соцсетям.",
   },
   {
-    name: "Марина Левина",
-    company: "Операционный директор, Aurum Retail",
-    text: "Юбилей компании прошел на уровне закрытой премии: свет, звук, награждение, эмоции. Собственники были в восторге, гости — тем более.",
-    initials: "МЛ",
+    name: "Ирина Дементьева",
+    role: "День рождения, 35 лет",
+    type: "Частный клиент",
+    text: "Отмечала день рождения с друзьями. Никто не умел готовить — и это вообще не мешало. Смеялись до слез, а в итоге съели то, что приготовили сами. Атмосфера дорогая, не «аниматоры».",
   },
   {
-    name: "Игорь Панов",
-    company: "Частный клиент, 42 года",
-    text: "Свой день рождения в стиле Гэтсби доверил ребятам полностью. Гости думали, что попали в кино. Ни одной организационной шероховатости за вечер.",
-    initials: "ИП",
+    name: "Сергей Титов",
+    role: "Мальчишник, 12 человек",
+    type: "Частный клиент",
+    text: "Альтернатива банальному бару. Соревновательный азарт, фартуки, огонь на сковородах и адекватный ведущий. Жених до сих пор вспоминает финальную битву.",
+  },
+  {
+    name: "Ольга Ремизова",
+    role: "Руководитель отдела продаж, «Веста»",
+    type: "Компания",
+    text: "Организация на уровне: сценарий, тайминг, площадка, кейтеринг — все взяли на себя. Мне оставалось только привезти команду. Заявку закрыли за один звонок.",
   },
 ];
 
 export function Testimonials() {
-  const [i, setI] = useState(0);
-  const r = reviews[i];
-  const go = (d: number) => setI((v) => (v + d + reviews.length) % reviews.length);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % reviews.length), 7000);
+    return () => clearInterval(t);
+  }, []);
+
+  const r = reviews[index];
 
   return (
-    <div className="surface-card relative rounded-3xl p-8 md:p-14">
-      <div key={i} className="animate-rise">
-        <div className="flex gap-1">
-          {Array.from({ length: 5 }).map((_, k) => (
-            <Star key={k} className="h-4 w-4 fill-gold text-gold" />
+    <div>
+      <div className="surface-card relative rounded-3xl p-7 md:p-12">
+        <div className="flex gap-1 text-ember">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} className="h-4 w-4 fill-current" />
           ))}
         </div>
-        <p className="mt-6 font-display text-lg leading-relaxed md:text-2xl">«{r.text}»</p>
+        <blockquote key={index} className="animate-rise mt-6 text-lg leading-relaxed md:text-2xl">
+          «{r.text}»
+        </blockquote>
         <div className="mt-8 flex items-center gap-4">
-          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-gold font-display text-base font-bold text-primary-foreground">
-            {r.initials}
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-fire font-display text-sm font-bold text-primary-foreground">
+            {r.name
+              .split(" ")
+              .map((p) => p[0])
+              .join("")}
           </span>
           <div className="min-w-0">
-            <div className="truncate font-semibold">{r.name}</div>
-            <div className="truncate text-sm text-muted-foreground">{r.company}</div>
+            <p className="truncate font-semibold">{r.name}</p>
+            <p className="truncate text-sm text-muted-foreground">{r.role}</p>
           </div>
+          <span className="ml-auto hidden rounded-full border border-border px-3 py-1 text-xs text-muted-foreground sm:block">
+            {r.type}
+          </span>
         </div>
       </div>
 
-      <div className="mt-10 flex items-center justify-between">
+      <div className="mt-6 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          aria-label="Предыдущий отзыв"
+          onClick={() => setIndex((i) => (i - 1 + reviews.length) % reviews.length)}
+          className="grid h-11 w-11 place-items-center rounded-full border border-border transition-colors hover:border-ember hover:text-ember"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
         <div className="flex gap-2">
-          {reviews.map((_, k) => (
+          {reviews.map((_, i) => (
             <button
-              key={k}
+              key={i}
               type="button"
-              aria-label={`Отзыв ${k + 1}`}
-              onClick={() => setI(k)}
-              className={`h-1.5 rounded-full transition-all ${
-                k === i ? "w-8 bg-gradient-gold" : "w-3 bg-secondary"
+              aria-label={`Отзыв ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`h-2 rounded-full transition-all ${
+                i === index ? "w-7 bg-gradient-fire" : "w-2 bg-secondary"
               }`}
             />
           ))}
         </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            aria-label="Предыдущий отзыв"
-            onClick={() => go(-1)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-border transition-colors hover:border-gold hover:text-gold"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Следующий отзыв"
-            onClick={() => go(1)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-border transition-colors hover:border-gold hover:text-gold"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label="Следующий отзыв"
+          onClick={() => setIndex((i) => (i + 1) % reviews.length)}
+          className="grid h-11 w-11 place-items-center rounded-full border border-border transition-colors hover:border-ember hover:text-ember"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
       </div>
     </div>
   );

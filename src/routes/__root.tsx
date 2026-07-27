@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "EVENTUM — организация корпоративов и тимбилдингов" },
+      { title: "FIRE KITCHEN SHOW — кулинарное квест-шоу для взрослых" },
       {
         name: "description",
         content:
-          "Event-агентство полного цикла: корпоративы, тимбилдинги, юбилеи компаний и праздники для взрослых.",
+          "Кулинарное квест-шоу в стиле Адской кухни: корпоративы, тимбилдинги, дни рождения, мальчишники и девичники от 8 до 80 участников.",
       },
-      { property: "og:site_name", content: "EVENTUM" },
+      { property: "og:site_name", content: "FIRE KITCHEN SHOW" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

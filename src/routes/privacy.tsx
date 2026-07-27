@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
-const TITLE = "Политика конфиденциальности — EVENTUM";
+const TITLE = "Политика конфиденциальности — FIRE KITCHEN SHOW";
 const DESCRIPTION =
-  "Как агентство EVENTUM собирает, использует и защищает персональные данные посетителей сайта и клиентов.";
+  "Как проект FIRE KITCHEN SHOW собирает, использует и защищает персональные данные посетителей сайта и клиентов.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -30,7 +30,7 @@ function Privacy() {
         <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted-foreground">
           <p>
             Настоящая политика описывает порядок обработки персональных данных, которые вы
-            передаете агентству EVENTUM через формы на сайте.
+            передаете шоу FIRE KITCHEN SHOW через формы на сайте.
           </p>
           <h2 className="text-xl font-bold text-foreground">1. Какие данные мы собираем</h2>
           <p>
