@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Flame, Instagram, Mail, MessageCircle, Phone, Send, Youtube } from "lucide-react";
+import { Flame, Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
+
 
 export function Footer() {
   return (
