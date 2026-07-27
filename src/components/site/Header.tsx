@@ -36,7 +36,7 @@ export function Header() {
             <img
               src={logoAsset.url}
               alt="Логотип «Адская кухня»"
-              className="h-8 w-auto sm:h-10"
+              className="h-11 w-auto sm:h-14"
               loading="eager"
             />
           </span>
