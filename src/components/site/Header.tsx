@@ -31,15 +31,13 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
-        <a href="#hero" className="flex min-w-0 items-center gap-2" aria-label="Адская кухня">
-          <span className="grid shrink-0 place-items-center rounded-lg bg-white p-1.5">
-            <img
-              src={logoAsset.url}
-              alt="Логотип «Адская кухня»"
-              className="h-11 w-auto sm:h-14"
-              loading="eager"
-            />
-          </span>
+        <a href="#hero" className="flex min-w-0 items-center" aria-label="Адская кухня">
+          <img
+            src={logoAsset.url}
+            alt="Логотип «Адская кухня»"
+            className="h-12 w-auto sm:h-16"
+            loading="eager"
+          />
         </a>
 
 
