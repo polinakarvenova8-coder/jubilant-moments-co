@@ -23,19 +23,19 @@ export function Footer() {
         <div className="space-y-3 text-sm">
           <h3 className="eyebrow">Контакты</h3>
           <a
-            href="tel:+74951234567"
+            href="tel:+79969003666"
             className="flex items-center gap-2 text-foreground transition-colors hover:text-ember"
           >
-            <Phone className="h-4 w-4 text-ember" /> +7 (495) 123-45-67
+            <Phone className="h-4 w-4 text-ember" /> +7 996 900-36-66
           </a>
           <a
-            href="https://wa.me/74951234567"
+            href="https://wa.me/79969003666"
             className="flex items-center gap-2 text-foreground transition-colors hover:text-ember"
           >
             <MessageCircle className="h-4 w-4 text-ember" /> WhatsApp
           </a>
           <a
-            href="https://t.me/firekitchenshow"
+            href="https://t.me/firekitchenkzn"
             className="flex items-center gap-2 text-foreground transition-colors hover:text-ember"
           >
             <Send className="h-4 w-4 text-ember" /> Telegram
@@ -66,7 +66,7 @@ export function Footer() {
               <Youtube className="h-4 w-4" />
             </a>
             <a
-              href="https://t.me/firekitchenshow"
+              href="https://t.me/firekitchenkzn"
               aria-label="Telegram"
               className="grid h-10 w-10 place-items-center rounded-full border border-border transition-colors hover:border-ember hover:text-ember"
             >

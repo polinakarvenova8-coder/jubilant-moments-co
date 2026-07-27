@@ -48,7 +48,7 @@ function Terms() {
             использоваться без письменного согласия.
           </p>
           <h2 className="text-xl font-bold text-foreground">4. Контакты</h2>
-          <p>По любым вопросам: hello@eventum.ru, +7 (495) 123-45-67.</p>
+          <p>По любым вопросам: hello@eventum.ru, +7 996 900-36-66.</p>
         </div>
       </main>
       <Footer />

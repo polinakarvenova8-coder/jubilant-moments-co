@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
           "@type": "LocalBusiness",
           name: "FIRE KITCHEN SHOW",
           description: DESCRIPTION,
-          telephone: "+7 (495) 123-45-67",
+          telephone: "+7 996 900-36-66",
           email: "hello@firekitchenshow.ru",
           priceRange: "$$$",
           address: { "@type": "PostalAddress", addressCountry: "RU", addressLocality: "Москва" },
