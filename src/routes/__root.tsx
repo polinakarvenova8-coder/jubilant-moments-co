@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Кулинарное квест-шоу в стиле Адской кухни: корпоративы, тимбилдинги, дни рождения, мальчишники и девичники от 8 до 80 участников.",
+          "Кулинарное квест-шоу в стиле Адской кухни: корпоративы, тимбилдинги, дни рождения, мальчишники и девичники от 8 до 40 участников.",
       },
       { property: "og:site_name", content: "FIRE KITCHEN SHOW" },
       { property: "og:type", content: "website" },

@@ -19,7 +19,7 @@ export function StickyCta() {
     >
       <div className="mx-auto flex max-w-2xl items-center gap-3 border-t border-border bg-background/90 p-3 backdrop-blur-xl md:mb-5 md:rounded-full md:border">
         <a
-          href="tel:+74951234567"
+          href="tel:+79969003666"
           aria-label="Позвонить"
           className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-border text-ember"
         >

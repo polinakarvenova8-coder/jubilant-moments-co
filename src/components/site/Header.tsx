@@ -53,11 +53,11 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href="tel:+74951234567"
+            href="tel:+79969003666"
             className="hidden items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-ember xl:flex"
           >
             <Phone className="h-4 w-4 text-ember" />
-            +7 (495) 123-45-67
+            +7 996 900-36-66
           </a>
           <a
             href="#quiz"
@@ -90,10 +90,10 @@ export function Header() {
               </a>
             ))}
             <a
-              href="tel:+74951234567"
+              href="tel:+79969003666"
               className="py-1 text-sm font-semibold text-foreground"
             >
-              +7 (495) 123-45-67
+              +7 996 900-36-66
             </a>
             <a
               href="#quiz"
