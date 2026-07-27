@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Menu, Phone, X } from "lucide-react";
+import { Flame, Menu, Phone, X } from "lucide-react";
 
 const nav = [
-  { href: "#for-whom", label: "Для кого" },
+  { href: "#emotions", label: "О шоу" },
+  { href: "#how", label: "Как проходит" },
   { href: "#formats", label: "Форматы" },
-  { href: "#process", label: "Как проходит" },
-  { href: "#cases", label: "Проекты" },
+  { href: "#gallery", label: "Галерея" },
   { href: "#reviews", label: "Отзывы" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -29,13 +29,13 @@ export function Header() {
           : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 lg:flex lg:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
         <a href="#hero" className="flex min-w-0 items-center gap-2">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-gold text-sm font-black text-primary-foreground">
-            E
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-fire text-primary-foreground">
+            <Flame className="h-5 w-5" />
           </span>
-          <span className="truncate font-display text-base font-bold tracking-tight">
-            EVENTUM<span className="text-gradient-gold">.</span>
+          <span className="truncate font-display text-sm font-bold tracking-tight sm:text-base">
+            FIRE KITCHEN<span className="text-gradient-fire"> SHOW</span>
           </span>
         </a>
 
@@ -44,7 +44,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-gold"
+              className="text-sm text-muted-foreground transition-colors hover:text-ember"
             >
               {item.label}
             </a>
@@ -54,16 +54,16 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href="tel:+74951234567"
-            className="hidden items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-gold md:flex"
+            className="hidden items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-ember xl:flex"
           >
-            <Phone className="h-4 w-4 text-gold" />
+            <Phone className="h-4 w-4 text-ember" />
             +7 (495) 123-45-67
           </a>
           <a
             href="#quiz"
-            className="hidden rounded-full bg-gradient-gold px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:inline-flex"
+            className="hidden rounded-full bg-gradient-fire px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:inline-flex"
           >
-            Рассчитать стоимость
+            Забронировать игру
           </a>
           <button
             type="button"
@@ -90,11 +90,17 @@ export function Header() {
               </a>
             ))}
             <a
+              href="tel:+74951234567"
+              className="py-1 text-sm font-semibold text-foreground"
+            >
+              +7 (495) 123-45-67
+            </a>
+            <a
               href="#quiz"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-gradient-gold px-5 py-3 text-center text-sm font-bold text-primary-foreground"
+              className="mt-2 rounded-full bg-gradient-fire px-5 py-3 text-center text-sm font-bold text-primary-foreground"
             >
-              Рассчитать стоимость
+              Забронировать игру
             </a>
           </nav>
         </div>
