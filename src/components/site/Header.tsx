@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Flame, Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
+import logoAsset from "@/assets/logo-ak.jpg.asset.json";
 
 const nav = [
   { href: "#emotions", label: "О шоу" },

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Flame, Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
+import logoAsset from "@/assets/logo-ak.jpg.asset.json";
+import { Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
 
 
 export function Footer() {
@@ -8,11 +9,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-fire text-primary-foreground">
-              <Flame className="h-5 w-5" />
-            </span>
-            <span className="font-display text-base font-bold">
-              FIRE KITCHEN<span className="text-gradient-fire"> SHOW</span>
+            <span className="grid place-items-center rounded-lg bg-white p-2">
+              <img
+                src={logoAsset.url}
+                alt="Логотип «Адская кухня»"
+                className="h-12 w-auto sm:h-14"
+                loading="lazy"
+              />
             </span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
