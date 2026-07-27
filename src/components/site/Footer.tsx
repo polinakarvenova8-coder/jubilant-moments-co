@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo_white.png.asset.json";
-import { Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
+import { MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
 
 
 export function Footer() {
@@ -54,24 +54,11 @@ export function Footer() {
           >
             <Users className="h-4 w-4 text-ember" /> ВКонтакте
           </a>
-          <a
-            href="https://instagram.com/adskoe_shou_kzn"
-            className="flex items-center gap-2 text-foreground transition-colors hover:text-ember"
-          >
-            <Instagram className="h-4 w-4 text-ember" /> @adskoe_shou_kzn
-          </a>
         </div>
 
         <div className="space-y-3 text-sm">
           <h3 className="eyebrow">Соцсети и документы</h3>
           <div className="flex flex-wrap gap-3">
-            <a
-              href="https://instagram.com/adskoe_shou_kzn"
-              aria-label="Instagram @adskoe_shou_kzn"
-              className="grid h-10 w-10 place-items-center rounded-full border border-border transition-colors hover:border-ember hover:text-ember"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
             <a
               href="https://vk.com/ad_cook_show"
               aria-label="ВКонтакте"
