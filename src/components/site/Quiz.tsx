@@ -23,7 +23,7 @@ const steps: Step[] = [
   {
     kind: "options",
     question: "Количество участников?",
-    options: ["8–15", "16–30", "31–50", "51–80"],
+    options: ["8–15", "16–25", "26–40"],
   },
   {
     kind: "input",
