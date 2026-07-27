@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
-const TITLE = "Пользовательское соглашение — EVENTUM";
+const TITLE = "Пользовательское соглашение — FIRE KITCHEN SHOW";
 const DESCRIPTION =
-  "Условия использования сайта агентства EVENTUM: заявки, коммерческие предложения и порядок взаимодействия.";
+  "Условия использования сайта шоу FIRE KITCHEN SHOW: заявки, коммерческие предложения и порядок взаимодействия.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -44,7 +44,7 @@ function Terms() {
           </p>
           <h2 className="text-xl font-bold text-foreground">3. Интеллектуальная собственность</h2>
           <p>
-            Материалы сайта, включая тексты и изображения, принадлежат агентству EVENTUM и не могут
+            Материалы сайта, включая тексты и изображения, принадлежат шоу FIRE KITCHEN SHOW и не могут
             использоваться без письменного согласия.
           </p>
           <h2 className="text-xl font-bold text-foreground">4. Контакты</h2>
