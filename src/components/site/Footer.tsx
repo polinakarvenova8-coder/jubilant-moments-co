@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/logo-ak.jpg.asset.json";
+import logoAsset from "@/assets/logo_white.png.asset.json";
 import { Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
 
 
