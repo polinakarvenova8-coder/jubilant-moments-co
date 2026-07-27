@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/logo-ak.jpg.asset.json";
+import logoAsset from "@/assets/logo_white.png.asset.json";
 import { Instagram, MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
 
 
@@ -8,15 +8,13 @@ export function Footer() {
     <footer className="border-t border-border bg-graphite/40 pb-24 md:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 lg:px-8">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="grid place-items-center rounded-lg bg-white p-2">
-              <img
-                src={logoAsset.url}
-                alt="Логотип «Адская кухня»"
-                className="h-12 w-auto sm:h-14"
-                loading="lazy"
-              />
-            </span>
+          <div className="flex items-center">
+            <img
+              src={logoAsset.url}
+              alt="Логотип «Адская кухня»"
+              className="h-14 w-auto sm:h-16"
+              loading="lazy"
+            />
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Кулинарное квест-шоу для взрослых компаний: корпоративы, тимбилдинги, дни рождения,
