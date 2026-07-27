@@ -43,7 +43,7 @@ export function Footer() {
             <Send className="h-4 w-4 text-ember" /> Telegram
           </a>
           <a
-            href="https://max.ru/firekitchenkzn"
+            href="https://max.ru/u/f9LHodD0cOIzFjRenoyF_tXQcn2n8l2nhkG7SAlqU5wgdIXVyWuMHXjRvjo"
             className="flex items-center gap-2 text-foreground transition-colors hover:text-ember"
           >
             <MessagesSquare className="h-4 w-4 text-ember" /> MAX
@@ -94,7 +94,7 @@ export function Footer() {
               <Send className="h-4 w-4" />
             </a>
             <a
-              href="https://max.ru/firekitchenkzn"
+              href="https://max.ru/u/f9LHodD0cOIzFjRenoyF_tXQcn2n8l2nhkG7SAlqU5wgdIXVyWuMHXjRvjo"
               aria-label="MAX"
               className="grid h-10 w-10 place-items-center rounded-full border border-border transition-colors hover:border-ember hover:text-ember"
             >
