@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, Flame, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { submitLead, type Lead } from "@/lib/crm";
@@ -15,12 +15,15 @@ export function LeadForm({
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sending, setSending] = useState(false);
+  const lock = useRef(false);
   const [done, setDone] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name.trim().length < 2) return toast.error("Укажите имя");
     if (phone.replace(/\D/g, "").length < 10) return toast.error("Укажите корректный телефон");
+    if (lock.current) return;
+    lock.current = true;
     setSending(true);
     try {
       await submitLead({ source, name: name.trim().slice(0, 100), phone: phone.trim().slice(0, 30) });
@@ -28,6 +31,7 @@ export function LeadForm({
       toast.success("Заявка отправлена — свяжемся в течение 15 минут");
     } catch {
       toast.error("Не удалось отправить заявку. Попробуйте позвонить нам.");
+      lock.current = false;
     } finally {
       setSending(false);
     }

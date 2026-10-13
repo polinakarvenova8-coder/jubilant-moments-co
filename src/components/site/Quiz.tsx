@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/crm";
@@ -43,6 +43,7 @@ export function Quiz() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sending, setSending] = useState(false);
+  const lock = useRef(false);
   const [done, setDone] = useState(false);
 
   const total = steps.length + 1;
@@ -64,6 +65,8 @@ export function Quiz() {
     if (name.trim().length < 2) return toast.error("Укажите имя");
     if (phone.replace(/\D/g, "").length < 10) return toast.error("Укажите корректный телефон");
 
+    if (lock.current) return;
+    lock.current = true;
     setSending(true);
     try {
       await submitLead({
@@ -80,6 +83,7 @@ export function Quiz() {
       setDone(true);
     } catch {
       toast.error("Не удалось отправить заявку. Попробуйте позвонить нам.");
+      lock.current = false;
     } finally {
       setSending(false);
     }
