@@ -28,17 +28,29 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import hero from "@/assets/hk-hero.jpg";
-import emotion from "@/assets/hk-emotion.jpg";
-import chef from "@/assets/hk-chef.jpg";
-import battle from "@/assets/hk-battle.jpg";
-import win from "@/assets/hk-win.jpg";
-import g1 from "@/assets/hk-g1.jpg";
-import g2 from "@/assets/hk-g2.jpg";
-import g3 from "@/assets/hk-g3.jpg";
-import g4 from "@/assets/hk-g4.jpg";
-import g5 from "@/assets/hk-g5.jpg";
-import cta from "@/assets/hk-cta.jpg";
+import heroRaw from "@/assets/hk-hero.jpg";
+import emotionRaw from "@/assets/hk-emotion.jpg";
+import chefRaw from "@/assets/hk-chef.jpg";
+import battleRaw from "@/assets/hk-battle.jpg";
+import winRaw from "@/assets/hk-win.jpg";
+import g1Raw from "@/assets/hk-g1.jpg";
+import g2Raw from "@/assets/hk-g2.jpg";
+import g3Raw from "@/assets/hk-g3.jpg";
+import g4Raw from "@/assets/hk-g4.jpg";
+import g5Raw from "@/assets/hk-g5.jpg";
+import ctaRaw from "@/assets/hk-cta.jpg";
+import { abs } from "@/lib/asset-url";
+const hero = abs(heroRaw);
+const emotion = abs(emotionRaw);
+const chef = abs(chefRaw);
+const battle = abs(battleRaw);
+const win = abs(winRaw);
+const g1 = abs(g1Raw);
+const g2 = abs(g2Raw);
+const g3 = abs(g3Raw);
+const g4 = abs(g4Raw);
+const g5 = abs(g5Raw);
+const cta = abs(ctaRaw);
 
 const TITLE = "Кулинарное квест-шоу «Адская кухня» для корпоративов | FIRE KITCHEN SHOW";
 const DESCRIPTION =

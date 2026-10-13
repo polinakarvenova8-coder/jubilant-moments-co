@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { abs } from "@/lib/asset-url";
 import logoAsset from "@/assets/logo_white.png.asset.json";
 import { MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "lucide-react";
 
@@ -10,7 +11,7 @@ export function Footer() {
         <div>
           <div className="flex items-center">
             <img
-              src={logoAsset.url}
+              src={abs(logoAsset.url)}
               alt="Логотип «Адская кухня»"
               className="h-14 w-auto sm:h-16"
               loading="lazy"
