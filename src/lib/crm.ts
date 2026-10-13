@@ -1,10 +1,12 @@
 /**
  * CRM integration point.
  *
- * All site forms funnel through submitLead(). To connect a CRM
- * (amoCRM, Bitrix24, HubSpot, Google Sheets, webhook и т.д.) set
- * VITE_CRM_WEBHOOK_URL and the payload below will be POSTed there.
+ * All site forms funnel through submitLead(). Leads are delivered to the
+ * Telegram group via a server function (token stays server-side). If
+ * VITE_CRM_WEBHOOK_URL is set, the payload is additionally POSTed there.
  */
+import { sendLeadToTelegram } from "./telegram.functions";
+
 export type Lead = {
   source: "quiz" | "hero" | "cta" | "callback";
   name: string;
@@ -20,19 +22,15 @@ export async function submitLead(lead: Lead): Promise<void> {
     createdAt: new Date().toISOString(),
   };
 
+  // Throws unless Telegram confirmed the message.
+  await sendLeadToTelegram({ data: { ...lead, page: payload.page } });
+
   const endpoint = import.meta.env.VITE_CRM_WEBHOOK_URL as string | undefined;
-
-  if (!endpoint) {
-    // No CRM connected yet — payload is ready for integration.
-    console.info("[lead]", payload);
-    await new Promise((r) => setTimeout(r, 600));
-    return;
+  if (endpoint) {
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch((e) => console.error("CRM webhook failed", e));
   }
-
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) throw new Error("CRM request failed");
 }
