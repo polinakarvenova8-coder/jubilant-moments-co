@@ -6,7 +6,7 @@ import { MessageCircle, MessagesSquare, Phone, Send, Users, Youtube } from "luci
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-graphite/40 pb-24 md:pb-0">
+    <footer className="border-t border-border bg-graphite/40 pb-36 md:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 lg:px-8">
         <div>
           <div className="flex items-center">

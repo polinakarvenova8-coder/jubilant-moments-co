@@ -10,6 +10,7 @@ const schema = z.object({
   phone: z.string().trim().min(5).max(30),
   comment: z.string().max(1000).optional(),
   answers: z.record(z.string(), z.string().max(200)).optional(),
+  marketing: z.record(z.string(), z.string().max(200)).optional(),
   page: z.string().max(500).optional(),
 });
 
@@ -20,6 +21,16 @@ const labels: Record<string, string> = {
   guests: "Количество участников",
   date: "Желаемая дата",
   city: "Город",
+  gift: "Подарок при бронировании в течение 5 дней",
+  utm_source: "UTM source",
+  utm_medium: "UTM medium",
+  utm_campaign: "UTM campaign",
+  utm_content: "UTM content",
+  utm_term: "UTM term",
+  yclid: "Yandex click ID",
+  gclid: "Google click ID",
+  fbclid: "Facebook click ID",
+  msclkid: "Microsoft click ID",
 };
 
 export const sendLeadToTelegram = createServerFn({ method: "POST" })
@@ -29,7 +40,7 @@ export const sendLeadToTelegram = createServerFn({ method: "POST" })
     if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
 
     const lines = [
-      `<b>Новая заявка — ${data.source === "quiz" ? "Анкета из 5 шагов" : "Короткая форма"}</b>`,
+      `<b>Новая заявка — ${data.source === "quiz" ? "Анкета" : "Короткая форма"}</b>`,
       "",
       `<b>Имя:</b> ${esc(data.name)}`,
       `<b>Телефон:</b> ${esc(data.phone)}`,
@@ -40,6 +51,11 @@ export const sendLeadToTelegram = createServerFn({ method: "POST" })
       }
     }
     if (data.comment) lines.push(`<b>Комментарий:</b> ${esc(data.comment)}`);
+    if (data.marketing) {
+      for (const [k, v] of Object.entries(data.marketing)) {
+        if (v) lines.push(`<b>${esc(labels[k] ?? k)}:</b> ${esc(v)}`);
+      }
+    }
     if (data.page) lines.push("", `Страница: ${esc(data.page)}`);
 
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {

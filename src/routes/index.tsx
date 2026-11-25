@@ -15,10 +15,9 @@ import {
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Quiz } from "@/components/site/Quiz";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Reveal } from "@/components/site/Reveal";
-import { LeadForm } from "@/components/site/LeadForm";
+import { LeadPopupProvider, useLeadPopup } from "@/components/site/LeadPopup";
 import { StickyCta } from "@/components/site/StickyCta";
 import { Toaster } from "@/components/ui/sonner";
 import {
@@ -160,7 +159,9 @@ const faq = [
   },
 ];
 
-function Landing() {
+function LandingContent() {
+  const { openLead, openQuiz } = useLeadPopup();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -192,19 +193,35 @@ function Landing() {
               Кулинарное квест-шоу для корпоративов, дней рождения и компаний друзей.
             </p>
 
-            <div className="animate-rise mt-9 flex flex-wrap gap-3">
-              <a
-                href="#quiz"
-                className="glow-fire inline-flex items-center gap-2 rounded-full bg-gradient-fire px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+            <div className="animate-rise surface-card mt-6 max-w-2xl rounded-2xl border-ember/40 p-5">
+              <p className="font-bold text-foreground">
+                Получите специальное предложение на проведение Адского кулинарного шоу!
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Оставьте заявку и получите индивидуальный расчёт стоимости и специальные условия
+                бронирования.
+              </p>
+              <p className="mt-3 text-sm font-semibold text-ember">
+                Подтвердите бронирование в течение 5 календарных дней после заявки — и выберите
+                подарок: конкурс «Чёрные ящики» или персональное видеоприглашение.
+              </p>
+            </div>
+
+            <div className="animate-rise mt-7 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={openQuiz}
+                className="glow-fire inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-fire px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
               >
                 <Flame className="h-4 w-4" /> Забронировать игру
-              </a>
-              <a
-                href="#quiz"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-7 py-4 text-sm font-bold backdrop-blur-md transition-colors hover:border-ember hover:text-ember"
+              </button>
+              <button
+                type="button"
+                onClick={openQuiz}
+                className="inline-flex min-h-12 items-center gap-2 rounded-full border border-border bg-background/40 px-7 py-4 text-sm font-bold backdrop-blur-md transition-colors hover:border-ember hover:text-ember"
               >
-                Получить стоимость
-              </a>
+                Получить предложение
+              </button>
             </div>
 
             <ul className="animate-rise mt-10 grid max-w-4xl gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -245,7 +262,13 @@ function Landing() {
                   </div>
                 ))}
               </div>
-              <LeadForm source="hero" className="mt-8 max-w-2xl" buttonLabel="Получить программу" />
+              <button
+                type="button"
+                onClick={() => openLead("hero")}
+                className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-fire px-7 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+              >
+                <Flame className="h-4 w-4" /> Получить программу
+              </button>
             </Reveal>
 
             <Reveal delay={120} className="grid grid-cols-2 gap-4">
@@ -329,12 +352,13 @@ function Landing() {
                   <div className="absolute inset-x-0 bottom-0 p-6">
                     <h3 className="text-xl font-bold">{f.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{f.text}</p>
-                    <a
-                      href="#quiz"
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-ember"
+                    <button
+                      type="button"
+                      onClick={openQuiz}
+                      className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ember"
                     >
                       Рассчитать стоимость <Flame className="h-4 w-4" />
-                    </a>
+                    </button>
                   </div>
                 </article>
               </Reveal>
@@ -345,12 +369,13 @@ function Landing() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   Соберем сценарий под вашу задачу и количество гостей.
                 </p>
-                <a
-                  href="#quiz"
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-fire px-6 py-3 text-sm font-bold text-primary-foreground"
+                <button
+                  type="button"
+                  onClick={openQuiz}
+                  className="mt-6 inline-flex min-h-12 w-fit items-center gap-2 rounded-full bg-gradient-fire px-6 py-3 text-sm font-bold text-primary-foreground"
                 >
                   Обсудить формат
-                </a>
+                </button>
               </div>
             </Reveal>
           </div>
@@ -383,7 +408,17 @@ function Landing() {
                 <h3 className="text-lg font-bold md:text-xl">
                   Получите программу шоу и стоимость на вашу дату
                 </h3>
-                <LeadForm source="cta" className="mt-5" buttonLabel="Получить программу" />
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Подтвердите бронирование в течение 5 календарных дней после заявки и получите
+                  подарок на выбор: конкурс «Чёрные ящики» или персональное видеоприглашение.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => openLead("cta")}
+                  className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-fire px-7 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+                >
+                  <Flame className="h-4 w-4" /> Получить предложение
+                </button>
               </div>
             </Reveal>
           </div>
@@ -427,12 +462,13 @@ function Landing() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     Пришлем подборку роликов с игр в мессенджер
                   </p>
-                  <a
-                    href="#quiz"
-                    className="mt-5 inline-flex rounded-full border border-ember px-6 py-3 text-sm font-bold text-ember"
+                  <button
+                    type="button"
+                    onClick={() => openLead("cta")}
+                    className="mt-5 inline-flex min-h-12 rounded-full border border-ember px-6 py-3 text-sm font-bold text-ember"
                   >
                     Запросить видео
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -476,8 +512,8 @@ function Landing() {
                   Рассчитать стоимость мероприятия
                 </h2>
                 <p className="mt-5 text-muted-foreground">
-                  Ответьте на 4 вопроса — пришлем программу шоу, свободные даты и точную стоимость
-                  под ваш формат.
+                  Ответьте на 4 вопроса, оставьте контакты и выберите подарок — пришлем программу
+                  шоу, свободные даты и точную стоимость под ваш формат.
                 </p>
                 <ul className="mt-8 space-y-3 text-sm">
                   {[
@@ -492,7 +528,24 @@ function Landing() {
                 </ul>
               </Reveal>
               <Reveal delay={120}>
-                <Quiz />
+                <div className="surface-card rounded-3xl p-6 md:p-10">
+                  <p className="eyebrow">Подарок на выбор</p>
+                  <h3 className="mt-4 text-2xl font-bold">
+                    Забронируйте праздник в течение 5 дней после оставления заявки
+                  </h3>
+                  <p className="mt-4 text-muted-foreground">
+                    При подтверждении бронирования в течение 5 календарных дней после отправки
+                    заявки вы получите дополнительный подарок: конкурс «Чёрные ящики» или
+                    персональное видеоприглашение на праздник.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={openQuiz}
+                    className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-fire px-7 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+                  >
+                    Пройти анкету и выбрать подарок <Flame className="h-4 w-4" />
+                  </button>
+                </div>
               </Reveal>
             </div>
           </div>
@@ -540,7 +593,13 @@ function Landing() {
               <p className="mt-5 text-muted-foreground md:text-lg">
                 Оставьте заявку и получите программу мероприятия уже сегодня.
               </p>
-              <LeadForm source="cta" className="mx-auto mt-9 max-w-2xl" />
+              <button
+                type="button"
+                onClick={() => openLead("cta")}
+                className="mx-auto mt-9 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-fire px-7 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+              >
+                <Flame className="h-4 w-4" /> Получить предложение
+              </button>
             </Reveal>
           </div>
         </section>
@@ -548,5 +607,13 @@ function Landing() {
 
       <Footer />
     </div>
+  );
+}
+
+function Landing() {
+  return (
+    <LeadPopupProvider>
+      <LandingContent />
+    </LeadPopupProvider>
   );
 }

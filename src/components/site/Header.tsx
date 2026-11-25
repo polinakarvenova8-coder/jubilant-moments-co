@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
 import { abs } from "@/lib/asset-url";
 import logoAsset from "@/assets/logo_white.png.asset.json";
+import { useLeadPopup } from "@/components/site/LeadPopup";
+import { MessengerButtons } from "@/components/site/MessengerButtons";
 
 const nav = [
   { href: "#emotions", label: "О шоу" },
@@ -15,6 +17,7 @@ const nav = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openQuiz } = useLeadPopup();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,12 +26,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const startQuiz = () => {
+    setOpen(false);
+    openQuiz();
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur-xl"
-          : "border-b border-transparent"
+        scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
@@ -40,7 +46,6 @@ export function Header() {
             loading="eager"
           />
         </a>
-
 
         <nav className="hidden items-center gap-7 lg:flex">
           {nav.map((item) => (
@@ -55,6 +60,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <MessengerButtons className="hidden items-center gap-2 md:flex" />
           <a
             href="tel:+79969003666"
             className="hidden items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-ember xl:flex"
@@ -62,17 +68,18 @@ export function Header() {
             <Phone className="h-4 w-4 text-ember" />
             +7 996 900-36-66
           </a>
-          <a
-            href="#quiz"
+          <button
+            type="button"
+            onClick={startQuiz}
             className="hidden rounded-full bg-gradient-fire px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:inline-flex"
           >
             Забронировать игру
-          </a>
+          </button>
           <button
             type="button"
             aria-label="Меню"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border lg:hidden"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -92,19 +99,17 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <a
-              href="tel:+79969003666"
-              className="py-1 text-sm font-semibold text-foreground"
-            >
+            <a href="tel:+79969003666" className="py-1 text-sm font-semibold text-foreground">
               +7 996 900-36-66
             </a>
-            <a
-              href="#quiz"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-gradient-fire px-5 py-3 text-center text-sm font-bold text-primary-foreground"
+            <MessengerButtons className="mt-2 flex items-center gap-3" />
+            <button
+              type="button"
+              onClick={startQuiz}
+              className="mt-2 min-h-12 rounded-full bg-gradient-fire px-5 py-3 text-center text-sm font-bold text-primary-foreground"
             >
               Забронировать игру
-            </a>
+            </button>
           </nav>
         </div>
       )}
